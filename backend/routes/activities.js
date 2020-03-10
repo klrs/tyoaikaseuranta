@@ -37,6 +37,15 @@ router.route('/:id').delete((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
+router.route('/user/:name').get((req, res) => {
+    Activity.find()
+        .where('username').equals(req.params.name)
+        .then(activity => {
+            res.json(activity)
+        })
+        .catch(err => res.status(400).json('Error: ' + err));
+});
+
 router.route('/update/:id').post((req, res) => {
   Activity.findById(req.params.id)
     .then(activity => {

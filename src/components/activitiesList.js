@@ -20,17 +20,44 @@ export default class ActivitiesList extends Component {
 
     this.deleteActivity = this.deleteActivity.bind(this)
 
-    this.state = {activities: []};
+    this.state = {
+        activities: [],
+        users: [],
+        chosenUser: null
+    };
   }
 
   componentDidMount() {
-    axios.get('http://localhost:5000/activities/')
-      .then(response => {
-        this.setState({ activities: response.data })
-      })
-      .catch((error) => {
-        console.log(error);
-      })
+    this.getUsers();
+    this.getActivities();
+
+  }
+
+  getUsers() {
+      axios.get('http://localhost:5000/users/')
+          .then(response => {
+              if (response.data.length > 0) {
+                  let newUsers = response.data.map(user => user.username);
+                  newUsers.unshift('Kaikki');
+                  this.setState({
+                      users: newUsers,
+                      chosenUser: newUsers[0]
+                  })
+              }
+          })
+          .catch((error) => {
+              console.log(error);
+          })
+  }
+
+  getActivities() {
+      axios.get('http://localhost:5000/activities/')
+          .then(response => {
+              this.setState({ activities: response.data })
+          })
+          .catch((error) => {
+              console.log(error);
+          })
   }
 
   deleteActivity(id) {
@@ -52,6 +79,26 @@ export default class ActivitiesList extends Component {
     return (
       <div>
         <h3>Kirjatut aktiviteetit</h3>
+          <label>Käyttäjä: </label>
+          <select ref="userInput"
+              required
+              className="form-control"
+              value={this.state.username}
+              onChange={() => {
+                  alert(this.state.username);
+              }}
+          >
+          {
+              this.state.users.map(function(user) {
+                  return <option
+                      key={user}
+                      value={user}
+                  >
+                      {user}
+                  </option>;
+          })
+          }
+          </select>
         <table className="table">
           <thead className="thead-light">
             <tr>
