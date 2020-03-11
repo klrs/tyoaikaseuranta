@@ -1,4 +1,4 @@
-#Running app
+<h2>Running</h2>
 1. replace const uri in backend/server.js with your own mongodb database url
 1. run `npm init`
 2. run `npm start` in /src/
