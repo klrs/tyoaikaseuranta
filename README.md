@@ -49,7 +49,7 @@ username: [STRING]
 ```
 
 <h2>Pictures</h2>
-<img src=kuva1.png>
+<img src=https://github.com/klrs/tyoaikaseuranta/blob/master/kuva1.PNG>
 
-<img src=kuva2.png>
+<img src=https://github.com/klrs/tyoaikaseuranta/blob/master/kuva2.PNG>
 
