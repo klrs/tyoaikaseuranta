@@ -4,7 +4,7 @@
 2. run `npm start` in /src/
 3. run `npm start` in /backend/
 
-#REST endpoints
+<h2>REST endpoints</h2>
 GET - '/activites/'
 Gets all activities
 
@@ -48,8 +48,8 @@ username: [STRING]
 }
 ```
 
-#Pictures
-![Kuva etusivusta](kuva1.png)
+<h2>Pictures</h2>
+<img src=kuva1.png>
 
-![Kuva aktiviteetin luomisesta](kuva2.png)
+<img src=kuva2.png>
 
