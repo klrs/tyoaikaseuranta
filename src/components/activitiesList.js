@@ -18,7 +18,8 @@ export default class ActivitiesList extends Component {
   constructor(props) {
     super(props);
 
-    this.deleteActivity = this.deleteActivity.bind(this)
+    this.deleteActivity = this.deleteActivity.bind(this);
+    this.onChangeUser = this.onChangeUser.bind(this);
 
     this.state = {
         activities: [],
@@ -41,7 +42,7 @@ export default class ActivitiesList extends Component {
                   newUsers.unshift('Kaikki');
                   this.setState({
                       users: newUsers,
-                      chosenUser: newUsers[0]
+                      chosenUser: newUsers[1]
                   })
               }
           })
@@ -51,14 +52,24 @@ export default class ActivitiesList extends Component {
   }
 
   getActivities() {
-      axios.get('http://localhost:5000/activities/')
-          .then(response => {
-              this.setState({ activities: response.data })
-          })
-          .catch((error) => {
-              console.log(error);
-          })
-  }
+        axios.get('http://localhost:5000/activities/')
+            .then(response => {
+                this.setState({ activities: response.data })
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+    }
+
+    getActivity(user) {
+        axios.get('http://localhost:5000/activities/user/' + user)
+            .then(response => {
+                this.setState({ activities: response.data })
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+    }
 
   deleteActivity(id) {
     axios.delete('http://localhost:5000/activities/'+id)
@@ -75,18 +86,30 @@ export default class ActivitiesList extends Component {
     })
   }
 
+  onChangeUser(e) {
+      this.setState({
+          chosenUser: e.target.value
+      });
+      if(e.target.value === 'Kaikki') {
+          this.getActivities();
+      }
+      else {
+          this.getActivity(e.target.value);
+      }
+
+  }
+
   render() {
     return (
       <div>
         <h3>Kirjatut aktiviteetit</h3>
           <label>Käyttäjä: </label>
-          <select ref="userInput"
+          <select
+              ref="userInput"
               required
               className="form-control"
               value={this.state.username}
-              onChange={() => {
-                  alert(this.state.username);
-              }}
+              onChange={this.onChangeUser}
           >
           {
               this.state.users.map(function(user) {
