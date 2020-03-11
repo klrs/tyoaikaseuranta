@@ -29,7 +29,17 @@ export default class CreateUser extends Component {
     console.log(user);
 
     axios.post('http://localhost:5000/users/add', user)
-      .then(res => console.log(res.data));
+        .then(function(res){
+          console.log(res.data);
+          alert(res.data);
+        })
+        .catch(function(error){
+          if (error.response.status === 400) {
+            alert("Username already taken!")
+          } else {
+            console.log(error)
+          }
+        });
 
     this.setState({
       username: ''
