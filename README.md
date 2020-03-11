@@ -1,8 +1,10 @@
 <h2>Running</h2>
-1. replace const uri in backend/server.js with your own mongodb database url
-1. run `npm init`
-2. run `npm start` in /src/
-3. run `npm start` in /backend/
+<ol>
+<li>replace const uri in backend/server.js with your own mongodb database url</li>
+<li>run `npm init`</li>
+<li>run `npm start` in /src/</li>
+<li>run `npm start` in /backend/</li>
+</ol>
 
 <h2>REST endpoints</h2>
 GET - '/activites/'
