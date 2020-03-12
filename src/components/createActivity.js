@@ -112,7 +112,7 @@ export default class CreateActivity extends Component {
               />
         </div>
         <div className="form-group">
-          <label>Kesto (in minuuteissa): </label>
+          <label>Kesto minuuteissa: </label>
           <input 
               type="text" 
               className="form-control"
