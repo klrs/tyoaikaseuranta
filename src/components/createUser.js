@@ -31,11 +31,11 @@ export default class CreateUser extends Component {
     axios.post('http://localhost:5000/users/add', user)
         .then(function(res){
           console.log(res.data);
-          alert(res.data);
+          alert("Käyttäjä lisätty onnituneesti!");
         })
         .catch(function(error){
           if (error.response.status === 400) {
-            alert("Username already taken!")
+            alert("Käyttäjä on jo olemassa!")
           } else {
             console.log(error)
           }
@@ -49,10 +49,10 @@ export default class CreateUser extends Component {
   render() {
     return (
       <div>
-        <h3>Create New User</h3>
+        <h3>Luo uusi käyttäjä</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group"> 
-            <label>Username: </label>
+            <label>Käyttäjä: </label>
             <input  type="text"
                 required
                 className="form-control"
@@ -61,7 +61,7 @@ export default class CreateUser extends Component {
                 />
           </div>
           <div className="form-group">
-            <input type="submit" value="Create User" className="btn btn-primary" />
+            <input type="submit" value="Luo käyttäjä" className="btn btn-primary" />
           </div>
         </form>
       </div>
